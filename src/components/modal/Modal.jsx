@@ -89,7 +89,7 @@ const Modal = ({ boards, setBoards }) => {
                         onDragOver={(e) => dragOverHandler(e)}
                         onDragStart={(e) => dragStartHandler(e, board, item)}
                         draggable={true}
-                        className="item"
+                        className="li_draggable"
                       >
                         {item.title}
                       </li>
@@ -103,13 +103,12 @@ const Modal = ({ boards, setBoards }) => {
                         onDragOver={(e) => dragOverHandler(e)}
                         onDragStart={(e) => dragStartHandler(e, board, item)}
                         draggable={true}
-                        className="item"
                       >
                         {item.title}
                         <img
                           className="cross_img"
                           onClick={removeItem}
-                          src="https://cdn-icons-png.flaticon.com/512/4147/4147190.png"
+                          src="https://cdn1.iconfinder.com/data/icons/interface-travel-and-environment/64/cross-delete-interface-remove-256.png"
                           alt="cross"
                         />
                       </li>

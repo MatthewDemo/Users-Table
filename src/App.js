@@ -3,11 +3,11 @@ import { useEffect, useState } from "react";
 import Modal from "./components/modal/Modal";
 import { fetchUsers } from "./redux/slices/usersSlice";
 import { setModalActive } from "./redux/slices/categorySlice";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
+import Table from "./components/table/Table";
 
 function App() {
   const dispatch = useDispatch();
-  const users = useSelector((state) => state.users.users);
   const [boards, setBoards] = useState([
     {
       id: 1,
@@ -36,7 +36,7 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div className="App">
       <div className="table_container">
         <button
           className="selectBtn"
@@ -44,35 +44,7 @@ function App() {
         >
           Select columns
         </button>
-        <table>
-          <thead>
-            <tr>
-              {boards[1].items.map((item) => (
-                <td key={item.title}>{item.title.toUpperCase()}</td>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {users &&
-              users.map((item) => (
-                <tr>
-                  {boards[1].items.map((column) => {
-                    const data = item[column.title];
-
-                    if (typeof data === "string" || typeof data === "number") {
-                      return <td key={column.title}>{data}</td>;
-                    } else {
-                      if (data.name) {
-                        return <td key={column.title}> {data.name} </td>;
-                      } else {
-                        return <td key={column.title}> {data.city} </td>;
-                      }
-                    }
-                  })}
-                </tr>
-              ))}
-          </tbody>
-        </table>
+        <Table boards={boards} />
       </div>
       <Modal boards={boards} setBoards={setBoards} />
     </div>

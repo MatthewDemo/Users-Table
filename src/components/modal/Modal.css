@@ -106,8 +106,8 @@ li {
   position: absolute;
   right: 15px;
   margin-top: 2px;
-  opacity: 0.3;
+  opacity: 0.6;
 }
 .cross_img:hover {
-  opacity: 1;
+  opacity: 1
 }
