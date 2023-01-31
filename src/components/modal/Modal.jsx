@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { setModalActive } from "../../redux/slices/categorySlice";
 import { useSelector, useDispatch } from "react-redux";
-
 import "./Modal.css";
 
 const Modal = ({ boards, setBoards }) => {
@@ -14,12 +13,10 @@ const Modal = ({ boards, setBoards }) => {
   function dragOverHandler(e) {
     e.preventDefault();
   }
-
   function dragStartHandler(e, board, item) {
     setCurrentBoard(board);
     setCurrentItem(item);
   }
-
   function dropCardHandler(e, board) {
     board.items.push(currentItem);
     const currentIndex = currentBoard.items.indexOf(currentItem);
@@ -84,52 +81,51 @@ const Modal = ({ boards, setBoards }) => {
             >
               <h1 className="title_columns">{board.title}</h1>
               <ul className="list">
-                {board.title &&
-                  board.title === "Available columns" &&
+                {board.title === "Available columns" &&
                   board.items.map((item) => {
-                    if (item) {
-                      return (
-                        <li
-                          key={item.title}
-                          onDragOver={(e) => dragOverHandler(e)}
-                          onDragStart={(e) => dragStartHandler(e, board, item)}
-                          draggable={true}
-                          className="item"
-                        >
-                          {item.title}
-                        </li>
-                      );
-                    } else return "lol";
+                    return (
+                      <li
+                        key={item.title}
+                        onDragOver={(e) => dragOverHandler(e)}
+                        onDragStart={(e) => dragStartHandler(e, board, item)}
+                        draggable={true}
+                        className="item"
+                      >
+                        {item.title}
+                      </li>
+                    );
                   })}
-                {board.title &&
-                  board.title === "Selected columns" &&
+                {board.title === "Selected columns" &&
                   board.items.map((item) => {
-                    if (item) {
-                      return (
-                        <li
-                          key={item.title}
-                          onDragOver={(e) => dragOverHandler(e)}
-                          onDragStart={(e) => dragStartHandler(e, board, item)}
-                          draggable={true}
-                          className="item"
-                        >
-                          {item.title}
-                          <img
-                            className="cross_img"
-                            onClick={removeItem}
-                            src="https://cdn-icons-png.flaticon.com/512/4147/4147190.png"
-                            alt="cross"
-                          />
-                        </li>
-                      );
-                    } else return "lolol";
+                    return (
+                      <li
+                        key={item.title}
+                        onDragOver={(e) => dragOverHandler(e)}
+                        onDragStart={(e) => dragStartHandler(e, board, item)}
+                        draggable={true}
+                        className="item"
+                      >
+                        {item.title}
+                        <img
+                          className="cross_img"
+                          onClick={removeItem}
+                          src="https://cdn-icons-png.flaticon.com/512/4147/4147190.png"
+                          alt="cross"
+                        />
+                      </li>
+                    );
                   })}
               </ul>
             </div>
           ))}
         </div>
 
-        <button className="apply_btn">Apply</button>
+        <button
+          onClick={() => dispatch(setModalActive(false))}
+          className="apply_btn"
+        >
+          Apply
+        </button>
       </div>
     </div>
   );

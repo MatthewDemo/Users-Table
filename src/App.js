@@ -31,8 +31,6 @@ function App() {
     },
   ]);
 
-  // console.log(users);
-
   useEffect(() => {
     dispatch(fetchUsers());
   }, []);
