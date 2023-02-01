@@ -6,7 +6,6 @@ import "./Modal.css";
 const Modal = ({ boards, setBoards }) => {
   const dispatch = useDispatch();
   const modalActive = useSelector((state) => state.category.modalActive);
-
   const [currentBoard, setCurrentBoard] = useState(null);
   const [currentItem, setCurrentItem] = useState(null);
 
@@ -135,7 +134,6 @@ const Modal = ({ boards, setBoards }) => {
             </div>
           ))}
         </div>
-
         <button
           onClick={() => dispatch(setModalActive(false))}
           className="apply_btn"

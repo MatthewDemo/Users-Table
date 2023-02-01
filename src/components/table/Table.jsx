@@ -1,38 +1,13 @@
 import React from "react";
 import "./Table.css";
-import { useSelector } from "react-redux";
+import TableHeader from "./table_header/TableHeader";
+import TableBody from "./table_body/TableBody";
 
 const Table = ({ boards }) => {
-  const users = useSelector((state) => state.users.users);
-
   return (
     <table>
-      <thead>
-        <tr>
-          {boards[1].items.map((item) => (
-            <td key={item.title}>{item.title.toUpperCase()}</td>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {users &&
-          users.map((item) => (
-            <tr key={item.title}>
-              {boards[1].items.map((column) => {
-                const data = item[column.title];
-                if (typeof data === "string" || typeof data === "number") {
-                  return <td key={column.title}>{data}</td>;
-                } else {
-                  if (data.name) {
-                    return <td key={column.title}> {data.name} </td>;
-                  } else {
-                    return <td key={column.title}> {data.city} </td>;
-                  }
-                }
-              })}
-            </tr>
-          ))}
-      </tbody>
+      <TableHeader boards={boards} />
+      <TableBody boards={boards} />
     </table>
   );
 };

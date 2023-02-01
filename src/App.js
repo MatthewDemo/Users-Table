@@ -5,6 +5,7 @@ import { fetchUsers } from "./redux/slices/usersSlice";
 import { setModalActive } from "./redux/slices/categorySlice";
 import { useDispatch } from "react-redux";
 import Table from "./components/table/Table";
+import VideoBG from "./components/video/Video";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ function App() {
 
   return (
     <div className="App">
+      <VideoBG />
       <div className="table_container">
         <button
           className="selectBtn"

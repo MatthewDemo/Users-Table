@@ -1,5 +1,5 @@
 .table_container {
-  background-color: rgb(34, 34, 34, 0.7);
+  background-color: rgb(34, 34, 34, 0.95);
   height: 80%;
   margin: 40px;
   padding: 20px;
@@ -20,3 +20,4 @@
 .selectBtn:hover {
     background-color: rgb(105, 104, 104);
 }
+
