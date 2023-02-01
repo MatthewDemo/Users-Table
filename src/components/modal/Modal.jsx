@@ -32,6 +32,7 @@ const Modal = ({ boards, setBoards }) => {
         return b;
       })
     );
+    setFilteredCells(boards[0].items);
   }
 
   function removeItem(e) {
@@ -42,7 +43,7 @@ const Modal = ({ boards, setBoards }) => {
       (elem) => elem.title !== e.target.parentNode.innerText
     );
     const availableColumns = [...boards[0].items, save];
-    setBoards(() => [
+    setBoards([
       {
         id: 1,
         title: "Available columns",
@@ -54,7 +55,22 @@ const Modal = ({ boards, setBoards }) => {
         items: selectedColumns,
       },
     ]);
+    setFilteredCells(availableColumns);
   }
+
+  const [filteredCells, setFilteredCells] = useState(boards[0].items);
+
+  const searchItem = (value) => {
+    if (value === "") {
+      setFilteredCells(boards[0].items);
+      return;
+    }
+    setFilteredCells(
+      filteredCells.filter((item) =>
+        item.title.toLowerCase().includes(value.toLowerCase())
+      )
+    );
+  };
 
   return (
     <div
@@ -69,6 +85,7 @@ const Modal = ({ boards, setBoards }) => {
           className="search_input"
           type="text"
           placeholder="Search available columns..."
+          onChange={(e) => searchItem(e.target.value)}
         />
 
         <div className="category_container">
@@ -82,7 +99,7 @@ const Modal = ({ boards, setBoards }) => {
               <h1 className="title_columns">{board.title}</h1>
               <ul className="list">
                 {board.title === "Available columns" &&
-                  board.items.map((item) => {
+                  filteredCells.map((item) => {
                     return (
                       <li
                         key={item.title}
