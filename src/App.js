@@ -15,7 +15,7 @@ function App() {
       title: "Available columns",
       items: [
         { id: 1, title: "email" },
-        { id: 2, title: "id" },
+        { id: 2, title: "company" },
         { id: 3, title: "address" },
         { id: 4, title: "website" },
       ],
@@ -24,10 +24,10 @@ function App() {
       id: 2,
       title: "Selected columns",
       items: [
-        { id: 5, title: "name" },
-        { id: 6, title: "username" },
-        { id: 7, title: "phone" },
-        { id: 8, title: "company" },
+        { id: 5, title: "id" },
+        { id: 6, title: "name" },
+        { id: 7, title: "username" },
+        { id: 8, title: "phone" },
       ],
     },
   ]);

@@ -12,11 +12,11 @@ const Modal = ({ boards, setBoards }) => {
   function dragOverHandler(e) {
     e.preventDefault();
   }
-  function dragStartHandler(e, board, item) {
+  function dragStartHandler(board, item) {
     setCurrentBoard(board);
     setCurrentItem(item);
   }
-  function dropCardHandler(e, board) {
+  function dropCardHandler(board) {
     board.items.push(currentItem);
     const currentIndex = currentBoard.items.indexOf(currentItem);
     currentBoard.items.splice(currentIndex, 1);
@@ -36,10 +36,12 @@ const Modal = ({ boards, setBoards }) => {
 
   function removeItem(e) {
     const save = boards[1].items.find(
-      (elem) => elem.title == e.target.parentNode.innerText
+      (elem) =>
+        elem.title.toUpperCase() == e.target.parentNode.innerText.toUpperCase()
     );
     const selectedColumns = boards[1].items.filter(
-      (elem) => elem.title !== e.target.parentNode.innerText
+      (elem) =>
+        elem.title.toUpperCase() !== e.target.parentNode.innerText.toUpperCase()
     );
     const availableColumns = [...boards[0].items, save];
     setBoards([
@@ -93,7 +95,7 @@ const Modal = ({ boards, setBoards }) => {
               key={board.title}
               className="columns_container"
               onDragOver={(e) => dragOverHandler(e)}
-              onDrop={(e) => dropCardHandler(e, board)}
+              onDrop={() => dropCardHandler(board)}
             >
               <h1 className="title_columns">{board.title}</h1>
               <ul className="list">
@@ -103,11 +105,11 @@ const Modal = ({ boards, setBoards }) => {
                       <li
                         key={item.title}
                         onDragOver={(e) => dragOverHandler(e)}
-                        onDragStart={(e) => dragStartHandler(e, board, item)}
+                        onDragStart={() => dragStartHandler(board, item)}
                         draggable={true}
                         className="li_draggable"
                       >
-                        {item.title}
+                        {item.title.toUpperCase()}
                       </li>
                     );
                   })}
@@ -117,10 +119,10 @@ const Modal = ({ boards, setBoards }) => {
                       <li
                         key={item.title}
                         onDragOver={(e) => dragOverHandler(e)}
-                        onDragStart={(e) => dragStartHandler(e, board, item)}
+                        onDragStart={() => dragStartHandler(board, item)}
                         draggable={true}
                       >
-                        {item.title}
+                        {item.title.toUpperCase()}
                         <img
                           className="cross_img"
                           onClick={removeItem}
